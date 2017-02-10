@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义音乐播放器audio</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+		   *{
+		   	margin: 0;
+		   	padding: 0;
+		   }
+		   html{
+		   	font-size: 100px;
+		   }
+		    html,body{
+		    	/*height:100%;*/
+		    	height:9.6rem;
+		    }
+			.box{
+				height:100%;
+				width:100%;
+				display: flex;
+				display: -webkit-flex;
+				flex-direction: column;
+				-webkit-flex-direction: column;
+			}
+			header{
+				height:0.72rem;
+				width:100%;
+				background: #77b22e;
+				overflow: hidden;
+				color:#fff;
+				padding-top:0.16rem;
+			}
+			header>button{
+				outline: none;
+				border: 1px #999 solid;
+				box-shadow: 2px 2px 2px 2px rgba(2, 2, 2, 0.2);
+				font-size: 0.3rem;
+				height: 0.52rem;
+				line-height: 0.52rem;
+				text-align: center;
+				background: linear-gradient(#8cc743,#528a0f);
+				border-radius: 0.05rem;
+				display: inline-block;
+				color:#fff;
+			}
+			header .lrc{
+				float:left;
+				width:1.02rem;
+				margin-left:  0.2rem;
+			}
+			
+			header .songs{
+				float:right;
+				width:1.30rem;
+				margin-right:  0.2rem;
+			}
+			header>span{
+				height:0.52rem;
+				line-height: 0.52rem;
+				font-size: 0.4rem;
+				display: inline-block;
+				float: left;
+				margin-left: 1.1rem;
+				font-weight: bold;
+			}
+			
+			
+			section{
+				flex:1;
+				-webkit-flex:1;
+				width:100%;
+				background: #424242;
+				position: relative;
+			}
+			section>.song-name{
+				display: block;
+				font-size: 0.35rem;
+				color: #feffad;
+				height:0.94rem;
+				width:5rem;
+				text-align: center;
+				line-height: 0.94rem;
+				margin-left: 0.7rem;
+			}
+			section>img{
+				position:absolute;
+				left:0.7rem;
+				top:0.96rem;
+				height:5rem;
+				width:5rem;
+			}
+			footer{
+				height:2.10rem;
+				width:100%;
+				background: #589312;
+				position: relative;
+			}
+			footer .time-line{
+				width:4.9rem;
+				border-top:0.05rem solid #a6cb7e;
+				position: relative;
+				margin-left: 0.77rem;
+				margin-top: 0.45rem;
+			}
+			footer .time-line .time-btn{
+				width:0.28rem;
+				height:0.28rem;
+				border-radius: 50%;
+				background: #fff;
+				position:absolute;
+				top:-0.14rem;
+				left:-0.14rem;
+			}
+			footer .time-box{
+				height:0.35rem;
+				width:5.34rem;
+				margin-left: 0.54rem;
+				margin-top:0.2rem;
+				font-size: 0.24rem;
+				color: #fff;
+				font-weight: bold;
+				overflow: hidden;
+			}
+			.time-box .time-current{
+				float:left;
+			}
+			.time-current>span{
+				float:left;
+			}
+			.time-box .time-duration{
+				float:right;
+			}
+			.time-duration>span{
+				float:left;
+			}
+			footer>.btn-box{
+				height:0.34rem;
+				width:5.24rem;
+				margin-left: 0.64rem;
+				margin-top: 0.35rem;
+			}
+			footer>.btn-box>div{
+				float: left;
+				height:0.34rem;
+				width: 0.45rem;
+				/*overflow: hidden;*/
+			}
+			footer>.btn-box div+div{
+				margin-right:0.60rem;
+			}
+			footer>.btn-box .mode{
+				margin-right:0.70rem;
+			}
+			footer>.btn-box .pause{
+				margin-left: 0.2rem;
+			}
+			footer>.btn-box .share{
+				float:right;
+				margin-right:0;
+			}
+			footer>.btn-box>div>img{
+				height:0.34rem;
+				0.45rem;
+				float:left;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		<div class="box">
+			<header>
+				<button class="lrc">歌词</button>
+				<span>正在播放</span>
+				<button class="songs">全部歌曲</button>
+			</header>
+			<section>
+				<span class="song-name">
+					<!--Fantastic baby-Bigbang-->
+					青云志   宣传曲-任贤齐
+				</span>
+				<img src="img/song1.png" />
+				<audio class="audio-song"></audio>
+			</section>
+			<footer>
+				<div class="time-line">
+					<div class="time-btn"></div>
+				</div>
+				<div class="time-box">
+					<div class="time-current">
+						<span class="minutes">0</span>
+						<span>:</span>
+						<span class="seconds">00</span>
+							
+					</div>
+					<div class="time-duration">
+						<span class="minutes">3</span>
+						<span>:</span>
+						<span class="seconds">45</span>
+					</div>
+				</div>
+				<div class="btn-box">
+					<div class="mode">
+						<img src="img/mode.png" />
+					</div>
+					<div class="prev">
+						<img src="img/prev.png" />
+					</div>
+					<div class="pause">
+						<img src="img/play.png" />
+					</div>
+					<div class="next">
+						<img src="img/next.png" />
+					</div>
+					<div class="share">
+						<img src="img/share.png" />
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script>
+		    /*响应式设计*/
+		    document.documentElement.style.fontSize=document.documentElement.clientWidth/6.4+"px";
+			window.onresize=function(){
+				document.documentElement.style.fontSize=document.documentElement.clientWidth/6.4+"px";
+			};
+			//数据，存歌曲库
+			var data=[ 
+			           {
+			           	name:"青云志 宣传曲-任贤齐",
+			           	url:"audio/1.mp3"
+			           },
+			           {
+			           	name:"光辉岁月-Beyond",
+			           	url:"audio/2.mp3"
+			           },
+			           {
+			           	name:"海阔天空-Beyond",
+			           	url:"audio/Beyond-haikuotiankong.mp3"
+			           },
+			           {
+			           	name:"真的爱你-Beyond",
+			           	url:"audio/Beyond-真的爱妳.mp3"
+			           },
+			           {
+			           	name:"F4-流星雨",
+			           	url:"audio/F4-流星雨.mp3"
+			           },
+			           {
+			           	name:"阿杜-坚持到底",
+			           	url:"audio/阿杜-坚持到底.mp3"
+			           },
+			           {
+			           	name:"阿杜-坚持到底",
+			           	url:"audio/阿杜-坚持到底.mp3"
+			           },
+			           {
+			           	name:"胡夏-那些年",
+			           	url:"audio/胡夏-那些年.mp3"
+			           }
+			         ]
+			;(function(){
+				var audioSong=document.querySelector(".audio-song");
+				audioSong["src"]="audio/1.mp3";
+				audioSong.autoplay=true;
+				//暂停与播放
+				document.querySelector(".pause").onclick=function(){
+					if(audioSong.autoplay){//暂停
+						audioSong.pause();
+						this.querySelector("img").src="img/pause.png";
+						audioSong.autoplay=false;
+					}else{//播放
+						audioSong.play();
+						this.querySelector("img").src="img/play.png";
+						audioSong.autoplay=true;
+					}
+					timeControl(audioSong);//音频播放器的进度条移动
+				}
+				//点击下一首
+				document.querySelector(".next").onclick=function(){
+					var url=audioSong.getAttribute("src");//当前正在播放歌曲url
+					nextSong(1,url);
+					console.log(url);
+				}
+				document.querySelector(".prev").onclick=function(){
+					//audioSong.getAttribute("src")获取的是写的具体的属性值
+					//audioSong.src或audioSong["src"]获取的最终都是绝对路径
+					var url=audioSong.getAttribute("src");//当前正在播放歌曲url，写的是相对路径
+					nextSong(-1,url);
+					console.log(url);
+				}
+				//当前音乐播放完，播放下一首歌曲
+				audioSong.onended=function(){
+					document.querySelector(".next").onclick();
+				}
+				
+				timeControl(audioSong);//音频播放器的进度条移动
+			})()
+			
+			/*
+			 参数：ele为dom节点；功能：自定义音频的进度条显示
+			*/
+			function timeControl(ele){
+				/*currentTime设置或返回音频当前时间
+				 * duration:音频长度
+				*/
+				var timeBtn=document.querySelector(".time-btn");
+				//当目前的播放位置已更改时触发。
+				/*timeupdate 事件在音频/视频（audio/video）的播放位置发生改变时触发。
+					该事件可以在以下情况被调用:
+					播放音频/视频（audio/video）
+					移动音频/视频（audio/video）播放位置
+					提示： timeupdate 事件通常与 Audio/Video 对象的 currentTime 属性一起使用，该属性返回音频/视频（audio/video）的播放位置（以秒计）。
+				 */
+				ele.ontimeupdate=function(){
+					//num为比值，当前音频播放的位置与音频总长度的百分比
+					var totalSeconds=parseInt(this.duration);
+					var currentTime=parseInt(this.currentTime);
+					var num=currentTime/totalSeconds;
+					timeBtn.style.left=4.9*num+"rem";
+					loadSongTime(currentTime,totalSeconds);
+					
+				}
+			}
+			//功能：显示音频播放的当前时间和总时间，参数totalSeconds为音频总时间，currentTime为音频播放到当前的时间
+			function loadSongTime(currentTime,totalSeconds){
+				//显示当前的播放时间
+				if(currentTime%60<10){
+					if(currentTime>=60){
+						document.querySelector(".time-current .minutes").innerHTML=parseInt(currentTime/60);
+						//currentTime=currentTime%60;
+						document.querySelector(".time-current .seconds").innerHTML="0"+currentTime%60;
+					}else{
+						document.querySelector(".time-current .seconds").innerHTML="0"+currentTime;
+					}
+					
+				}else{
+					document.querySelector(".time-current .seconds").innerHTML=currentTime%60;
+				}
+				//显示音频的总时间
+				document.querySelector(".time-duration .minutes").innerHTML=parseInt(totalSeconds/60);
+				if(totalSeconds%60<10){
+					document.querySelector(".time-duration .seconds").innerHTML="0"+totalSeconds%60;
+				}else{
+					document.querySelector(".time-duration .seconds").innerHTML=totalSeconds%60;
+				}
+				
+			}
+			
+			
+			//切换歌曲,参数：num为正值时，代表下一首，负值时是上一首；url为当前正在播放的歌曲路径
+			function nextSong(num,url){
+				for(var i=0;i<data.length;i++){
+					if(url==data[i].url){
+						var index=i+num;
+						if(index>data.length-1){
+							index=data.length-1;
+						}
+						if(index<0){
+							index=0;
+						}
+						var audioSong=document.querySelector(".audio-song");
+						audioSong.src=data[index].url;
+						document.querySelector(".song-name").innerHTML=data[index].name;
+						audioSong.load();//重新加载
+						audioSong.play();//播放
+						break;
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

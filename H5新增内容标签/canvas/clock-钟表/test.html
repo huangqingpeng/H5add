@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvasTest"></canvas>
+		<script>
+			var mycanvas=document.querySelector("#canvasTest");
+			var contx=mycanvas.getContext("2d");
+			mycanvas.width=500;
+			mycanvas.height=500;
+			
+			var deg=10;
+			setInterval(function(){
+				deg+=10;
+				contx.clearRect(0,0,500,500);
+				
+				rotateRect("#900",1,deg,100,100);
+				rotateRect("#009",-1,deg,300,100);
+			},100);
+			
+			function rotateRect(color,code,deg,x,y){
+				contx.save();
+				contx.beginPath();
+				contx.fillStyle=color;
+				contx.translate(x,y);
+				contx.rotate(code*deg*Math.PI/180);
+				contx.rect(0,0,200,100);
+				
+				contx.fill();
+				contx.restore();
+			}
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>六角形</title>
+		<style type="text/css">
+		    *{
+		    	padding:0;
+		    	margin:0;
+		    }
+			.star{
+				height:610px;
+				width:610px;
+				background: palegoldenrod;
+				margin:50px 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas class="star"></canvas>
+		<script>
+			var star=document.querySelector(".star");
+			star.width=610;
+		    star.height=610;
+			var circle=star.getContext("2d");
+			circle.beginPath();
+			circle.moveTo(305,305);
+//			circle.arc(305,305,300,0,1/3*Math.PI);
+//			//circle.lineWidth=10;
+//			circle.strokeStyle="#00BFFF";
+//			circle.stroke();
+//			circle.fillStyle="pink";
+//			circle.fill();
+//			circle.closePath();
+//			
+//		    circle.beginPath();
+//		    circle.moveTo(305,305);
+//			circle.arc(305,305,300,1/3*Math.PI,2/3*Math.PI);
+//			circle.fillStyle="deeppink";
+//			circle.fill();
+//			circle.closePath();
+//			
+//			circle.beginPath();
+//		    circle.moveTo(305,305);
+//			circle.arc(305,305,300,2/3*Math.PI,1*Math.PI);
+//			circle.fillStyle="#222";
+//			circle.fill();
+//			circle.closePath();
+//			
+//			circle.beginPath();
+//		    circle.moveTo(305,305);
+//			circle.arc(305,305,300,1*Math.PI,4/3*Math.PI);
+//			circle.closePath();
+//			circle.fillStyle="#528A0F";
+//			circle.fill();
+//			
+//			
+//			circle.beginPath();
+//		    circle.moveTo(305,305);
+//			circle.arc(305,305,300,4/3*Math.PI,5/3*Math.PI);
+//			circle.closePath();
+//			circle.fillStyle="#FEFFAD";
+//			circle.fill();
+//			
+//			circle.beginPath();
+//		    circle.moveTo(305,305);
+//			circle.arc(305,305,300,5/3*Math.PI,2*Math.PI);
+            circle.arc(305,305,300,0,2*Math.PI);
+			circle.closePath();
+			
+			//circle.lineWidth=10;
+			circle.strokeStyle="#00BFFF";
+			//circle.stroke();
+			circle.fillStyle="saddlebrown";
+			circle.fill();
+			
+		
+		
+		    //连线
+		    circle.beginPath();
+		    circle.moveTo(305,305);
+			//circle.arc(305,305,300,4/3*Math.PI,5/3*Math.PI);
+			circle.lineTo(305+300*Math.cos(1/3*Math.PI),305-300*Math.sin(1/3*Math.PI));
+			circle.lineTo(305+300*Math.cos(1/3*Math.PI),305+300*Math.sin(1/3*Math.PI));
+			//circle.closePath();
+			circle.strokeStyle="red";
+			circle.stroke();
+			circle.fillStyle="red";
+			circle.fill();
+		
+		
+		    circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305+300*Math.cos(1/3*Math.PI),305+300*Math.sin(1/3*Math.PI));
+			circle.lineTo(5,305);
+			//circle.closePath();
+			circle.fillStyle="red";
+			circle.fill();
+		
+		    circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(5,305);
+			circle.lineTo(305+300*Math.cos(1/3*Math.PI),305-300*Math.sin(1/3*Math.PI));
+			circle.closePath();
+			circle.fillStyle="red";
+			circle.fill();
+			
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(605,305);
+			circle.lineTo(305-300*Math.cos(1/3*Math.PI),305+300*Math.sin(1/3*Math.PI));
+			//circle.closePath();
+			circle.fillStyle="deepskyblue";
+			circle.strokeStyle="deepskyblue";
+			circle.stroke();
+			circle.fill();
+			
+		
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305-300*Math.cos(1/3*Math.PI),305+300*Math.sin(1/3*Math.PI));
+			circle.lineTo(305-300*Math.cos(1/3*Math.PI),305-300*Math.sin(1/3*Math.PI));
+			//circle.closePath();
+			circle.strokeStyle="deepskyblue";
+			circle.stroke();
+			circle.fillStyle="deepskyblue";
+			circle.fill();
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305-300*Math.cos(1/3*Math.PI),305-300*Math.sin(1/3*Math.PI));
+			circle.lineTo(605,305);
+			circle.closePath();
+			circle.strokeStyle="deepskyblue";
+			circle.stroke();
+			circle.fillStyle="deepskyblue";
+			circle.fill();
+			
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305+150,305-150*Math.tan(1/6*Math.PI));
+			circle.lineTo(305+150,305+150*Math.tan(1/6*Math.PI));
+			circle.closePath();
+			circle.strokeStyle="pink";
+			circle.stroke();
+			circle.fillStyle="pink";
+			circle.fill();
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305+150,305+150*Math.tan(1/6*Math.PI));
+			circle.lineTo(305,305+150/Math.cos(1/6*Math.PI));
+			circle.closePath();
+			circle.strokeStyle="pink";
+			circle.stroke();
+			circle.fillStyle="pink";
+			circle.fill();
+			
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305,305+150/Math.cos(1/6*Math.PI));
+			circle.lineTo(305-150,305+150*Math.tan(1/6*Math.PI));
+			circle.closePath();
+			circle.strokeStyle="pink";
+			circle.stroke();
+			circle.fillStyle="pink";
+			circle.fill();
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305-150,305+150*Math.tan(1/6*Math.PI));
+			circle.lineTo(305-150,305-150*Math.tan(1/6*Math.PI));
+			circle.closePath();
+			circle.strokeStyle="pink";
+			circle.stroke();
+			circle.fillStyle="pink";
+			circle.fill();
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305-150,305-150*Math.tan(1/6*Math.PI));
+			circle.lineTo(305,305-150/Math.cos(1/6*Math.PI));
+			circle.closePath();
+			circle.strokeStyle="pink";
+			circle.stroke();
+			circle.fillStyle="pink";
+			circle.fill();
+			
+			circle.beginPath();
+		    circle.moveTo(305,305);
+			circle.lineTo(305,305-150/Math.cos(1/6*Math.PI));
+			circle.lineTo(305+150,305-150*Math.tan(1/6*Math.PI));
+			circle.closePath();
+			circle.strokeStyle="pink";
+			circle.stroke();
+			circle.fillStyle="pink";
+			circle.fill();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>视频播放</title>
+		<style>
+			.timeLine{
+				width:400px;
+				/*height:10px;*/
+				border-top:5px solid #999;
+				position: relative;
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+			.timeLine .timeBtn{
+				width:20px;
+				height:20px;
+				border-radius: 50%;
+				background: #333;
+				position:absolute;
+				top:-12px;
+				left:-12px;
+			}
+		</style>
+	</head>
+	<body>
+		<video class="video" id="videoTest"></video>
+		<div class="timeLine">
+			<div class="timeBtn"></div>
+		</div>
+		<button class="playBtn">播放</button>
+		<button class="pauseBtn">暂停</button>
+		<span class="allTime"></span>
+		<div class="listBox">
+			<!--<div>视频1</div>
+			<div>视频2</div>
+			<div>视频3</div>-->
+		</div>
+	</body>
+	<script>
+	    var dataObj={
+	    	sor:[{
+	    		name:"视频1",
+	    		url:"video/videoplayback_4.mp4"
+	    	    },
+	    	    {
+	    		name:"视频2",
+	    		url:"video/videoplayback_4_start=44000.mp4"
+	    	    },
+	    	    {
+	    		name:"视频3",
+	    		url:"video/3theA.mp4"
+	    	    },
+	    	     {
+	    		name:"视频4",
+	    		url:"video/3theB.mp4"
+	    	    },
+	    	     {
+	    		name:"视频5",
+	    		url:"video/mov_bbb.mp4"
+	    	    }
+	    	    ]
+	    };
+		(function(){
+			var thisVideo=document.querySelector("#videoTest");
+			thisVideo.width=400;
+			thisVideo.height=300;
+			thisVideo.src="video/3theA.mp4";
+//			thisVideo.autoplay=true;
+//			thisVideo.controls=true;
+            document.querySelector(".playBtn").onclick=function(){
+            	thisVideo.play();//开始播放
+            }
+             document.querySelector(".pauseBtn").onclick=function(){
+            	thisVideo.pause();//暂停
+            }
+            createMenu(thisVideo);
+			timeControl(thisVideo);
+		})();
+		
+		
+		//控制时间进度
+		function timeControl(ele){
+			/*currentTime设置或返回视频当前时间
+			 * duration:视频长度
+			*/
+			var timeBtn=document.querySelector(".timeBtn");
+			//当目前的播放位置已更改时触发。
+			ele.ontimeupdate=function(){
+				//num为当前视频的播放时间与总长度的比值
+				var num=ele.currentTime/ele.duration;
+				//console.log(ele.currentTime);
+				timeBtn.style.left=num*400+"px";
+				document.querySelector(".allTime").innerHTML=parseInt(ele.currentTime);
+			}
+		}
+		
+		function createMenu(thisVideo){
+			var box=document.querySelector(".listBox");
+			var data=dataObj.sor;
+			for(var i=0;i<data.length;i++){
+				(function(i){
+					var btn=document.createElement("div");
+					btn.innerHTML=data[i].name;
+					btn.onclick=function(){
+						thisVideo.src=data[i].url;
+						thisVideo.load();
+						thisVideo.play();
+					}
+					box.appendChild(btn);
+				})(i)
+			}
+			
+			
+		}
+	</script>
+</html>

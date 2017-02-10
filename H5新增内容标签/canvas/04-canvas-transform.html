@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.canvasTest{
+				background: #00BFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas class="canvasTest"></canvas>
+		<script>
+			var mycanvas=document.querySelector(".canvasTest");
+			mycanvas.width=600;
+			mycanvas.height=600;
+			var contx= mycanvas.getContext("2d");
+			contx.fillStyle="#990000";
+			
+			contx.translate(300,300);
+			contx.save();//保存当前环境的状态。
+			contx.beginPath();
+			contx.rotate(20*Math.PI/180);
+			
+			//contx.arc(0,0,300,0,2*Math.PI);
+			contx.rect(0,0,100,50);
+			contx.fill();
+			contx.restore();//返回之前保存过的路径状态和属性。
+			contx.beginPath();
+			contx.rotate(20*Math.PI/180);
+			contx.fillStyle="#999";
+			contx.rect(0,0,100,50);
+			contx.fill();
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas</title>
+		<style>
+			#canvas_test{
+				width:600px;
+				height:600px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas_test"></canvas>
+		<script>
+			var mycanvas=document.querySelector("#canvas_test");
+			var contx=mycanvas.getContext("2d");//作用：返回一个对象，2d的绘制环境,必须有，目前只支持2d
+			//通过属性定义宽高和canvas定义宽高是不一样的
+			mycanvas.width=600;
+			mycanvas.height=600;
+			/*方法rect（x,y,width,height）,画矩形
+			 * 参数	描述
+				x	矩形左上角的 x 坐标。
+				y	矩形左上角的 y 坐标。
+				width	矩形的宽度，以像素计。
+				height	矩形的高度，以像素计。
+				提示：请使用 stroke() 或 fill() 方法在画布上实际地绘制矩形。
+			 */
+			contx.rect(50,50,200,80);
+			contx.fillStyle="#528A0F";
+			contx.fill();//填充
+			/*arc() 方法创建弧/曲线（用于创建圆或部分圆）。
+				提示：如需通过 arc() 来创建圆，请把起始角设置为 0，结束角设置为 2*Math.PI。
+				提示：请使用 stroke() 或 fill() 方法在画布上绘制实际的弧。
+			 JavaScript 语法：context.arc(x,y,r,sAngle,eAngle,counterclockwise);
+				参数值
+				参数	描述
+				x	圆的中心的 x 坐标。
+				y	圆的中心的 y 坐标。
+				r	圆的半径。
+				sAngle	起始角，以弧度计（弧的圆形的三点钟位置是 0 度）。
+				eAngle	结束角，以弧度计。
+				counterclockwise	可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆时针。
+			 * */
+			/*moveTo() 方法把路径移动到画布中的指定点，不创建线条。
+				提示：请使用 stroke() 方法在画布上绘制确切的路径。
+				JavaScript 语法：	context.moveTo(x,y);
+			 */
+			contx.beginPath();//起始一条路径，或重置当前路径。使用时需要先把上个图画完，下一个图形和上一个不相连
+			contx.moveTo(100,200);//把路径移动到画布中的指定点，不创建线条。如果不设置，会从上一个图形绘制的结束点开始绘制
+			
+			//contx.moveTo(200,200);
+			contx.arc(100,200,50,0,1.5*Math.PI);
+			contx.closePath();//闭合，创建从当前点回到起始点的路径。
+			
+			
+			/*stroke() 方法会实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。
+                                        提示：请使用 strokeStyle 属性来绘制另一种颜色/渐变。
+			 */
+			contx.strokeStyle="red";
+			contx.stroke();//描边
+			/*fill() 方法填充当前的图像（路径）。默认颜色是黑色。
+				提示：请使用 fillStyle 属性来填充另一种颜色/渐变。
+				意：如果路径未关闭，那么 fill() 方法会从路径结束点到开始点之间添加一条线，
+				以关闭该路径（正如 closePath() 一样），然后填充该路径。
+			 */
+			
+			contx.fillStyle="deepskyblue";
+			//contx.fill();//填充
+			
+			contx.beginPath();
+			contx.moveTo(200,200);
+			contx.lineTo(300,200);
+			contx.lineTo(350,300);
+			contx.lineTo(150,300);
+			contx.stroke();
+			contx.fill();
+			
+			contx.beginPath();
+			contx.moveTo(100,350);
+			//contx.quadraticCurveTo(cx,cy,x,y)
+			contx.quadraticCurveTo(100,400,200,350);
+			contx.quadraticCurveTo(100,300,300,350);
+			contx.strokeStyle="#000";
+			contx.stroke();
+			contx.fill();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas class="canvasTest"></canvas>
+		<script>
+			var mycanvas=document.querySelector(".canvasTest");
+			mycanvas.width=500;
+			mycanvas.height=500;
+			var contx= mycanvas.getContext("2d");
+			var initX=50;
+			var fps=24;
+			contx.fillStyle="#990000";
+			setInterval(function(){
+				/*clearRect() 方法清空给定矩形内的指定像素。
+					JavaScript 语法：	context.clearRect(x,y,width,height);
+					参数值
+					参数	描述
+					x	要清除的矩形左上角的 x 坐标。
+					y	要清除的矩形左上角的 y 坐标。
+					width	要清除的矩形的宽度，以像素计。
+					height	要清除的矩形的高度，以像素计。
+				 */
+				contx.clearRect(0,0,500,500);
+				moveArc();
+			},1000/fps);
+			function moveArc(){
+				contx.beginPath();
+				contx.arc(initX,50,10,0,2*Math.PI);
+			    contx.fill();
+			    initX+=5;
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>

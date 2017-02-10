@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>localStorage和sessionStorage</title>
+	</head>
+	<body>
+		<script>
+		    /*localStorage和sessionStorage
+		     是window下面的对象
+		     */
+			if(window.localStorage){
+				if(window.localStorage["user"]){
+					console.log(window.localStorage["user"])
+				}else{
+					window.localStorage["user"]="hqp";
+				}
+				
+			}else{
+				
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>钟表</title>
+		<style>
+			.canvasTest{
+				/*background: #00BFFF;*/
+			}
+		</style>
+		<script type="text/javascript" src="clock.js" ></script>
+	</head>
+	<body>
+		<canvas class="canvasTest"></canvas>
+		<script>
+		   var thisclock=new Clock({
+		   	        canvas:".canvasTest",
+					width:500,
+					height:500
+		   })
+		thisclock.init();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>转盘抽奖</title>
+		<style>
+			.plate{
+				background: pink;
+			}
+		</style>
+		<script src="plate.js"></script>
+	</head>
+	<body>
+		<canvas class="plate"></canvas>
+		<script>
+			var thisPlate=new Plate({
+				   width:500,
+				   height:500,
+				   canvas:".plate"
+			});
+			
+			thisPlate.init();
+		</script>
+	</body>
+</html>
